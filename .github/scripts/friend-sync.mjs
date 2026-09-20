@@ -1,14 +1,5 @@
 #!/usr/bin/env node
-/**
- * 友链数据变动 → 往博客仓库写一份快照并提交。
- *
- * 提交信息写明「什么动作 + 哪个站点」（例：友链收录：liblog（https://li.liyueovo.top）），
- * 这次提交本身就会触发 Vercel 重新部署，所以 Vercel 部署列表里显示的就是这句话，
- * 一眼能看出这次重新部署是为了哪个站点。
- *
- * 由数据仓库的 .github/workflows/notify-deploy.yml 调用。
- * 本地试跑：DRY_RUN=1 CHANGED_FILES=$'A\tdata/applications/x.json' node friend-sync.mjs
- */
+
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 
@@ -37,7 +28,6 @@ const readDisk = (p) => {
 	}
 };
 
-/** 改动前的版本；拿不到就当作「新文件」 */
 const readBefore = (p) => {
 	const before = (process.env.BEFORE_SHA || "").trim();
 	if (!before || /^0+$/.test(before)) return undefined;
@@ -50,11 +40,9 @@ const readBefore = (p) => {
 	}
 };
 
-// ── 1) 本次动了哪些友链文件 ────────────────────────────────
 const isFriendFile = (p) => DIRS.some((d) => p.startsWith(`data/${d}/`) && p.endsWith(".json"));
 
 function changedFiles() {
-	// 本地试跑用：CHANGED_FILES 每行 "STATUS\tpath"（STATUS 用 git 的 A/M/D/R）
 	if (process.env.CHANGED_FILES) {
 		return process.env.CHANGED_FILES.split("\n")
 			.map((line) => {
@@ -83,7 +71,6 @@ function changedFiles() {
 		.filter(Boolean);
 }
 
-/** 同一次变动里同一域名可能涉及两个文件（applications → friends 的移动），按域名合并 */
 const bySlug = new Map();
 for (const { status, path } of changedFiles()) {
 	if (!isFriendFile(path)) continue;
@@ -108,7 +95,6 @@ for (const { status, path } of changedFiles()) {
 	);
 }
 
-// ── 2) 每个站点这次是什么动作 ──────────────────────────────
 function label(rec) {
 	const entry = rec.entry || {};
 	const site = entry.name ? `${entry.name}（${entry.url || rec.slug}）` : entry.url || rec.slug;
@@ -138,7 +124,6 @@ const message = MANUAL
 					.map((r) => (r.entry || {}).name || r.slug)
 					.join("、")}）`;
 
-// ── 3) 生成给博客仓库的快照 ────────────────────────────────
 function approvedFriends() {
 	const out = [];
 	for (const dir of ["friends", "applications"]) {
@@ -179,7 +164,6 @@ const snapshot = {
 	friends,
 };
 
-// ── 4) 写进博客仓库（这一步的提交就是 Vercel 看到的文案） ──
 async function pushSnapshot() {
 	if (!TOKEN) return { ok: false, reason: "没配 BLOG_PUSH_TOKEN" };
 
@@ -209,7 +193,6 @@ async function pushSnapshot() {
 	return { ok: true, commit: detail?.commit?.html_url || "" };
 }
 
-// ── 5) 兜底：没配 token 时退回原来的部署钩子（保证永远能重新构建） ──
 async function callHook() {
 	if (!HOOK) return { ok: false, reason: "没配 VERCEL_DEPLOY_HOOK" };
 	try {
