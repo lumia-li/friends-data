@@ -5,7 +5,7 @@
   "avatarAuto": true,
   "url": "https://astro.build/",
   "backlink": "http://localhost:4322/__backlink-test.html",
-  "status": "pending",
+  "status": "approved",
   "submittedAt": "2026-09-20T05:11:42.088Z",
   "checks": {
     "siteReachable": true,
