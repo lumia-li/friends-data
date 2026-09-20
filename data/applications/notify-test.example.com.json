@@ -1,0 +1,14 @@
+{
+  "name": "通知链路验收站",
+  "description": "验证新申请会自动开 Issue",
+  "avatar": "https://example.com/avatar.png",
+  "url": "https://notify-test.example.com/",
+  "backlinkProvided": false,
+  "status": "pending",
+  "submittedAt": "2026-09-20T07:44:33.021Z",
+  "checks": {
+    "siteReachable": true,
+    "siteStatus": 200,
+    "backlinkVerified": false
+  }
+}
