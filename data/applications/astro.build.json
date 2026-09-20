@@ -1,0 +1,15 @@
+{
+  "name": "浏览器验收站",
+  "description": "验证没填友链页时的提示",
+  "avatar": "https://astro.build/og/astro.jpg",
+  "url": "https://astro.build/",
+  "backlinkProvided": false,
+  "status": "pending",
+  "submittedAt": "2026-09-20T06:21:18.862Z",
+  "checks": {
+    "siteReachable": true,
+    "siteStatus": 200,
+    "avatarReachable": true,
+    "avatarStatus": 200
+  }
+}
