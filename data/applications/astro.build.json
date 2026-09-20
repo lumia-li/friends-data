@@ -1,0 +1,14 @@
+{
+  "name": "标记验收站",
+  "description": "不填友链页的标记",
+  "avatar": "https://astro.build/og/astro.jpg",
+  "avatarAuto": true,
+  "url": "https://astro.build/",
+  "backlinkProvided": false,
+  "status": "pending",
+  "submittedAt": "2026-09-20T06:20:13.924Z",
+  "checks": {
+    "siteReachable": true,
+    "siteStatus": 200
+  }
+}
