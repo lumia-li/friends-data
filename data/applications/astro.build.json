@@ -1,0 +1,16 @@
+{
+  "name": "自动通过验收站",
+  "description": "验证全自动通过",
+  "avatar": "https://astro.build/og/astro.jpg",
+  "avatarAuto": true,
+  "url": "https://astro.build/",
+  "backlink": "http://localhost:4322/__backlink-test.html",
+  "autoApproved": true,
+  "status": "approved",
+  "submittedAt": "2026-09-20T05:02:49.743Z",
+  "checks": {
+    "siteReachable": true,
+    "siteStatus": 200,
+    "backlinkVerified": true
+  }
+}
