@@ -1,0 +1,12 @@
+{
+  "name": "提示分类测试",
+  "description": "临时测试数据",
+  "avatar": "",
+  "url": "https://no-such-site-9f8a7b.invalid/",
+  "status": "pending",
+  "submittedAt": "2026-09-20T02:56:54.267Z",
+  "checks": {
+    "siteReachable": false,
+    "siteNote": "域名解析失败（地址可能拼错了，或者域名已经失效）"
+  }
+}
