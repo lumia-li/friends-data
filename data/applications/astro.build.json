@@ -1,0 +1,13 @@
+{
+  "name": "小明博客",
+  "description": "记录日常碎碎念",
+  "avatar": "https://astro.build/og/astro.jpg",
+  "avatarAuto": true,
+  "url": "https://astro.build/",
+  "status": "pending",
+  "submittedAt": "2026-09-20T05:08:48.034Z",
+  "checks": {
+    "siteReachable": true,
+    "siteStatus": 200
+  }
+}
