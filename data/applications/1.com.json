@@ -1,0 +1,11 @@
+{
+  "name": "test",
+  "description": "test",
+  "avatar": "",
+  "url": "http://1.com",
+  "status": "pending",
+  "submittedAt": "2026-09-20T02:54:10.030Z",
+  "checks": {
+    "siteReachable": false
+  }
+}
