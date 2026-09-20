@@ -1,0 +1,13 @@
+{
+  "name": "头像抓取验收",
+  "description": "验证自动抓头像",
+  "avatar": "https://astro.build/og/astro.jpg",
+  "avatarAuto": true,
+  "url": "https://astro.build/",
+  "status": "pending",
+  "submittedAt": "2026-09-20T03:55:36.471Z",
+  "checks": {
+    "siteReachable": true,
+    "siteStatus": 200
+  }
+}
