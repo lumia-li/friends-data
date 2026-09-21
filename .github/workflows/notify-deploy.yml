@@ -1,0 +1,53 @@
+name: notify-deploy
+
+# data/ 一有变动就同步到博客仓库并触发重新构建：
+#   · 站长把申请文件的 status 改成 approved → 页面出现新友链
+#   · 站长移动文件 / 删除友链 → 页面同步更新
+#
+# 每次都会往博客仓库写一份快照（src/data/friend-sync.json）并提交，
+# 提交信息写明「什么动作 + 哪个站点」，例如：
+#   友链收录：liblog（https://li.liyueovo.top）
+# 这条提交本身就触发 Vercel 重新部署，所以部署列表里显示的就是这句话
+# （Deploy Hook 不支持自定义文案，所以改用提交来触发）。
+#
+# 仓库密钥（配第一个才有上面的效果；两个都不配不会报错，只是不会重新构建）：
+#   BLOG_PUSH_TOKEN     对博客仓库有 Contents 读写权限的 token
+#   VERCEL_DEPLOY_HOOK  兜底：没有 BLOG_PUSH_TOKEN 时用它触发部署
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/**"
+  # 手动触发：Actions → notify-deploy → Run workflow（用来测试或补一次部署）
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: notify-deploy
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: 取出本次改动
+        uses: actions/checkout@v4
+        with:
+          # 要跟 push 前的版本做 diff，取全量历史最稳（仓库很小）
+          fetch-depth: 0
+
+      - name: 同步友链数据并触发部署
+        env:
+          BLOG_REPO: ${{ vars.BLOG_REPO || 'lumia-li/liyueblog' }}
+          BLOG_BRANCH: main
+          BLOG_PUSH_TOKEN: ${{ secrets.BLOG_PUSH_TOKEN }}
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: node .github/scripts/friend-sync.mjs
