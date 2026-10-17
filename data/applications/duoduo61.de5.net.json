@@ -1,0 +1,17 @@
+{
+  "name": "多多のblog",
+  "description": "都走吧，没有人属于我",
+  "avatar": "https://duoduo61.de5.net/images/favicon.png",
+  "url": "http://duoduo61.de5.net",
+  "backlink": "https://duoduo61.de5.net/links/",
+  "backlinkProvided": true,
+  "status": "pending",
+  "submittedAt": "2026-10-17T07:42:29.420Z",
+  "checks": {
+    "siteReachable": true,
+    "siteStatus": 200,
+    "avatarReachable": true,
+    "avatarStatus": 200,
+    "backlinkVerified": true
+  }
+}
