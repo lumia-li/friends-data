@@ -4,14 +4,18 @@
   "avatar": "https://duoduo61.de5.net/images/favicon.png",
   "url": "http://duoduo61.de5.net",
   "backlink": "https://duoduo61.de5.net/links/",
+  "tags": [
+    "技术",
+    "生活"
+  ],
   "backlinkProvided": true,
   "status": "pending",
-  "submittedAt": "2026-10-17T07:42:29.420Z",
+  "submittedAt": "2026-11-17T08:09:32.457Z",
   "checks": {
     "siteReachable": true,
     "siteStatus": 200,
     "avatarReachable": true,
     "avatarStatus": 200,
-    "backlinkVerified": true
+    "backlinkVerified": false
   }
 }
